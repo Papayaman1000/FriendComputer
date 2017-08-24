@@ -455,17 +455,18 @@ client.on('message', message => {
                 } else {message.reply('You don\'t have that many Pearl Points!')}
               } else {message.reply('You must add a number after the bet!')}
               break;
+            /*                                                              TODO
             case 'pay':
               if (commands[2] && !isNaN(Number(commands[2]))) {
                 if (Number(commands[2]) <= users[message.author.username].pearlPoints) {
                   if (Number(commands[2]) <= 0) {message.reply('Nice try.');} else {
-                    if (message.mentions[0]) {
-                      users[message.mentions[0].username].pearlPoints += Number(commands[2]);
+                    if (message.mentions.users.user.id) {
+                      users[message.mentions.users.user.username].pearlPoints += Number(commands[2]);
                       users[message.author.username].pearlPoints -= Number(commands[2]);
                       message.channel.send(
                         message.author.username
                       + ' has paid '
-                      + message.mentions[0].username
+                      + message.mentions.users.user.username
                       + ' '
                       + commands[2]
                       + ppE
@@ -474,6 +475,8 @@ client.on('message', message => {
                   }
                 } else {message.reply('You don\'t have that many to give.');}
               } else {message.reply('Please use a valid number.');}
+              break;
+            */
             case 'prizepouch':
               if (!commands[2]) {
                 message.channel.send([
