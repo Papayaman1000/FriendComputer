@@ -396,7 +396,6 @@ client.on('message', message => {
                   '**`!pearlpoints claim`** -- Claim your daily Pearl Points!',
                   '**`!pearlpoints help`** -- See this message!',
                   '**`!pearlpoints prizepouch <item>`** -- Exchange Pearl Points for something from the Pearl Prize Pouch!',
-                  '**`!pearlpoints pay <amount> <@mention>`** -- Send Pearl Points to the mentioned user! Sharing is caring!',
                   '**`!pearlpoints set <emojiname>`** -- Sets your Pearl Point icon to one of the ones you\'ve unlocked.'
                 ].join('\n'));
               break;
@@ -533,7 +532,7 @@ client.on('message', message => {
               }
               break;
             default:
-              message.reply('Not a valid `!pearlpoint` command! Leave everything after it blank to see help.');
+              message.reply('Not a valid `!pearlpoint` command! Use `!pearlpoints help` to see help.');
               break;
           }
         break;
