@@ -80,6 +80,7 @@ const emojis = {
   'younggregpoint': '<:youngGregPoint:346766188266651648>',
   'lionpoint': '<:lionPoint:346767612375728130>',
   'oldgarnetpoint': '<:oldGarnetPoint:346769666963800066>',
+  'malachitepoint': '<:malachitepoint:350622121304522753>',
   'star': '<:star:340862978750676992>',
   'pearl': '<:Pearl:340862978062680068>',
   'RoseQuartz': '<:RoseQuartz:340863178256678912>',
@@ -112,8 +113,9 @@ var ppEmoji = [
   'bismuthpoint',
   'aquapoint',
   'amethystpoint',
-  'alexandritepoint'
-]
+  'alexandritepoint',
+  'malachitepoint'
+];
 
 // Random outputs
 const jojoReferences = [
@@ -454,8 +456,8 @@ client.on('message', message => {
                 } else {message.reply('You don\'t have that many Pearl Points!')}
               } else {message.reply('You must add a number after the bet!')}
               break;
-            /*                                                              TODO
-            case 'pay':
+            /*
+            case 'pay':                                                     TODO
               if (commands[2] && !isNaN(Number(commands[2]))) {
                 if (Number(commands[2]) <= users[message.author.username].pearlPoints) {
                   if (Number(commands[2]) <= 0) {message.reply('Nice try.');} else {
