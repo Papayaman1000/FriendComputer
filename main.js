@@ -11,7 +11,7 @@ var users = require('../users.json');
 
 
 function update(filePath, fileVar) {
-  console.log('Writing to: ' + filePath + ' at ' + time() + ' ms');
+  console.log('Writing to: ' + filePath + ' at ' + time());
   fs.writeFile(filePath, JSON.stringify(fileVar, null, 2), function (err) {
     if (err) return console.log(err);
     console.log('Wrote to ' + filePath);
@@ -309,6 +309,9 @@ client.on('ready', () => {
 client.on('message', message => {
   if (!message.content.startsWith(p)) {return;}
   else {
+    console.log('Received prefixed message at ' + new Date().toUTCString());
+    console.log('Message contents received:');
+    console.log(message.content);
     var commands = message.content.toLowerCase().split(' ');
     commands[0] = commands[0].slice(p.length);
     switch(commands[0]) {
@@ -431,7 +434,7 @@ client.on('message', message => {
                       '|#\n>|'+items[randInt(4) - 1]
                       +'|'+emojis.RainbowQuartz+'|'+emojis.star
                       +'|<\n#|'+items[randInt(4) - 1]+'|'+items[randInt(4) - 1]
-                      +'|'+items[randInt(4) - 1]+'|#```\n\nYou lost! Next time.');
+                      +'|'+items[randInt(4) - 1]+'|#\n\nYou lost! Next time.');
                       users[message.author.username].pearlPoints -= Number(commands[2]);
                       update('../users.json', users);
                     } else if (outcome <= 19) {
@@ -555,6 +558,11 @@ client.on('message', message => {
               break;
           }
         break;
+      case 'ping':
+        var now = new Date().getUTCMilliseconds();
+        var sent = message.createdAt.getUTCMilliseconds();
+        message.channel.send('Online! Message processed in `' + (now - sent) + 'ms`');
+        break;
       case 'reference':
         message.channel.send(jojoReferences[randInt(jojoReferences.length) - 1]);
         break;
@@ -583,9 +591,6 @@ client.on('message', message => {
           }
         }
         break;
-      case 'test':
-        message.reply(emojis.garnetpoint);
-        break;
       case 'thanks':
       case 'thank':
         if (message.author.id === '267914049172275201') {
@@ -612,6 +617,9 @@ client.on('message', message => {
         break;
       case 'whatsnewpussycat':
         message.channel.send('pls no');
+        break;
+      default:
+        console.log('Message did not contain a valid command. Ignoring.');
         break;
     }
   }
