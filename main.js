@@ -6,15 +6,15 @@ const randomCat = require('random-cat');
 const client = new Discord.Client();
 const config = require('../config.json');
   const token = config.token;
+  const p = config.prefix;
 var users = require('../users.json');
 
 
-
 function update(filePath, fileVar) {
+  console.log('Writing to: ' + filePath + ' at ' + time() + ' ms');
   fs.writeFile(filePath, JSON.stringify(fileVar, null, 2), function (err) {
     if (err) return console.log(err);
-    console.log('Writing to: ' + filePath + ' at ' + Date.now() + ' ms');
-    console.log('Wrote:\n' + fileVar);
+    console.log('Wrote to ' + filePath);
   });
 }
 
@@ -43,6 +43,18 @@ function showAvailablePearlPoints(message) {
   return out.join('\n');
 }
 
+function time() {
+  let d = new Date();
+  return d.toUTCString();
+}
+
+function utcDay() {
+  let now = new Date();
+  let y = now.getUTCFullYear() * 10000;
+  let m = (now.getUTCMonth() + 1) * 100;
+  let d = now.getUTCDate();
+  return (y + m + d);
+}
 // Emoji
 const emojis = {
   'thonking': '<:thonking:337416747114299393>',
@@ -295,17 +307,18 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  if (message.content.charAt(0) !== '!') {return;}
+  if (!message.content.startsWith(p)) {return;}
   else {
     var commands = message.content.toLowerCase().split(' ');
+    commands[0] = commands[0].slice(p.length - 1);
     switch(commands[0]) {
-      case '!approve':
+      case 'approve':
         message.channel.send(approve[randInt(approve.length) - 1]);
         break;
-      case '!cat':
+      case 'cat':
         message.channel.send(randomCat.get());
         break;
-      case '!corners':
+      case 'corners':
         //SECRET! Ababadabadobahdabadoobadoobadah badabadadoobah, IT'S A SECRET!
         message.channel.send(
           [
@@ -321,45 +334,45 @@ client.on('message', message => {
             '\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/'
           ].join('\n'));
         break;
-      case '!dont':
+      case 'dont':
         message.channel.send('Sorry, I can\'t take that back... but... sorry if it\'s inconvenient!');
         break;
-      case '!diodad':
+      case 'diodad':
         message.channel.send(dioDad[randInt(dioDad.length) - 1]);
         break;
-      case '!help':
+      case 'help':
         message.channel.send([
           'Here\'s a list of commands.',
-          '**`!approve`** -- Your friend did a good. Let them know.',
-          '**`!cat`** -- Get a random cat picture.',
-          '**`!dont`** -- Tell me not to do something.',
-          '**`!diodad`** -- Fetch a SFW fanart of everyone\'s favorite time-stopping vampire being good dad.',
-          '**`!help`** -- It brings up this menu. S-Sorry if it\'s too confusing...',
-          '**`!lapidot`** -- Fetch a SFW fanart of everyone\'s favorite gay rocks.',
-          '**`!lenny`** -- ( ͡° ͜ʖ ͡°)',
-          ['**`!pearlpoints <commands>`** -- The Pearl Point ' + emojis.pearpoint + ' incentive system. Type `!pearlpoints help` for more info.'].join(''),
-          '**`!reference`** -- Outputs a random reference or joke.',
-          '**`!roll <notation>`** -- rolls dice as specified by standard notation. Type `!roll help` for more info.',
-          '**`!thank`** -- Command me to thank you.',
-          '**`!thenk`** -- Um? I don\'t know what this does. [I-Is that even a word?]',
-          '**`!think`** -- Have me output my thoughts.',
-          ['**`!thonk`** -- ', emojis.thonking].join(''),
-          '**`!thunk`** -- Seriously, is this even a word? I don\'t get it.',
-          '**`!troubleshoot`** -- Have me fix your issues.',
-          '**`!itdidntfuckingwork`** -- Tell me I messed up when I tried helping you. Sorry...',
-          '**`!whatsnewpussycat`** -- No. No. _No._',
+          '**`' + p + 'approve`** -- Your friend did a good. Let them know.',
+          '**`' + p + 'cat`** -- Get a random cat picture.',
+          '**`' + p + 'dont`** -- Tell me not to do something.',
+          '**`' + p + 'diodad`** -- Fetch a SFW fanart of everyone\'s favorite time-stopping vampire being good dad.',
+          '**`' + p + 'help`** -- It brings up this menu. S-Sorry if it\'s too confusing...',
+          '**`' + p + 'lapidot`** -- Fetch a SFW fanart of everyone\'s favorite gay rocks.',
+          '**`' + p + 'lenny`** -- ( ͡° ͜ʖ ͡°)',
+          ['**`' + p + 'pearlpoints <commands>`** -- The Pearl Point ' + emojis.pearpoint + ' incentive system. Type `' + p + 'pearlpoints help` for more info.'].join(''),
+          '**`' + p + 'reference`** -- Outputs a random reference or joke.',
+          '**`' + p + 'roll <notation>`** -- rolls dice as specified by standard notation. Type `' + p + 'roll help` for more info.',
+          '**`' + p + 'thank`** -- Command me to thank you.',
+          '**`' + p + 'thenk`** -- Um? I don\'t know what this does. [I-Is that even a word?]',
+          '**`' + p + 'think`** -- Have me output my thoughts.',
+          ['**`' + p + 'thonk`** -- ', emojis.thonking].join(''),
+          '**`' + p + 'thunk`** -- Seriously, is this even a word? I don\'t get it.',
+          '**`' + p + 'troubleshoot`** -- Have me fix your issues.',
+          '**`' + p + 'itdidntfuckingwork`** -- Tell me I messed up when I tried helping you. Sorry...',
+          '**`' + p + 'whatsnewpussycat`** -- No. No. _No._',
           'PM my master Papayaman1000#6000 for any feature requests!'
         ].join('\n'));
         break;
-      case '!lapidot':
+      case 'lapidot':
         message.channel.send(lapidot[randInt(lapidot.length) - 1]);
         break;
-      case '!lenny':
+      case 'lenny':
         message.channel.send('( ͡° ͜ʖ ͡°)');
         break;
-      case '!pearlpoint':
-      case '!pearlpoints':
-      case '!pp':
+      case 'pearlpoint':
+      case 'pearlpoints':
+      case 'pp':
         if (!(message.author.username in users)) {
           newUser(message.author);
         }
@@ -373,19 +386,23 @@ client.on('message', message => {
               );
               break;
             case 'claim':
-              if (Date.now() > (users[message.author.username].timeOfLastClaim + 86400000)) {
-                users[message.author.username].timeOfLastClaim = Date.now();
+              if (utcDay() > (users[message.author.username].timeOfLastClaim + 1)) {
+                users[message.author.username].timeOfLastClaim = utcDay();
                 users[message.author.username].pearlPoints += 1000;
                 update('../users.json', users);
                 message.reply('Today\'s Pearl Points claimed! You now have '
                 + users[message.author.username].pearlPoints
                 + ppE);
-              } else {message.reply(
-                'You\'ve already claimed your Pearl Points today!'
-                + ' You can claim them again in `'
-                + Math.floor(((users[message.author.username].timeOfLastClaim + 86400000) - Date.now()) / 3600000) + 'h '
-                + Math.floor((((users[message.author.username].timeOfLastClaim + 86400000) - Date.now()) % 3600000) / 60000) + 'm '
-                + Math.floor(((((users[message.author.username].timeOfLastClaim+ 86400000) - Date.now()) % 3600000) % 60000) / 1000) + 's`.'
+              } else {
+                let now = new Date();
+                message.reply(
+                  'You already claimed your Pearl Points today!\n'
+                + 'They can be claimed once per UTC day.\n'
+                + 'The current UTC time is `'
+                + now.getUTCHours()
+                + now.getUTCMinutes()
+                + now.getUTCSeconds()
+                + '`.'
                 );
               }
               break;
@@ -393,12 +410,12 @@ client.on('message', message => {
               message.channel.send(
                 [
                   'Here\'s how to use Pearl Points!',
-                  '**`!pearlpoints balance`** -- Check how many Pearl Points you have!',
-                  '**`!pearlpoints bet <amount>`** -- Gamble your Pearl Points!',
-                  '**`!pearlpoints claim`** -- Claim your daily Pearl Points!',
-                  '**`!pearlpoints help`** -- See this message!',
-                  '**`!pearlpoints prizepouch <item>`** -- Exchange Pearl Points for something from the Pearl Prize Pouch!',
-                  '**`!pearlpoints set <emojiname>`** -- Sets your Pearl Point icon to one of the ones you\'ve unlocked.'
+                  '**`' + p + 'pearlpoints balance`** -- Check how many Pearl Points you have!',
+                  '**`' + p + 'pearlpoints bet <amount>`** -- Gamble your Pearl Points!',
+                  '**`' + p + 'pearlpoints claim`** -- Claim your daily Pearl Points!',
+                  '**`' + p + 'pearlpoints help`** -- See this message!',
+                  '**`' + p + 'pearlpoints prizepouch <item>`** -- Exchange Pearl Points for something from the Pearl Prize Pouch!',
+                  '**`' + p + 'pearlpoints set <emojiname>`** -- Sets your Pearl Point icon to one of the ones you\'ve unlocked.'
                 ].join('\n'));
               break;
             case 'bet':
@@ -481,12 +498,12 @@ client.on('message', message => {
             case 'prizepouch':
               if (!commands[2]) {
                 message.channel.send([
-                  'Here\'s what we have [type `!pearlpoints prizepouch <item>` to purchase]:',
+                  'Here\'s what we have [type `' + p + 'pearlpoints prizepouch <item>` to purchase]:',
                   '**`adoption`** [10,000] -- Lose your Stray Meme role!',
                   '**`unadoption`** [5,000] -- If you\'re an Adopted Meme, run away and become a Stray!',
                   '**`dm-ex-machina`** [50,000] -- If you attend D&D games, use this to earn a free Wish scroll!',
                   '**`prestige`** [10,000] -- Get a Prestige Pearl Point! These don\'t affect anything, and you can\'t see them, but they\'re tracked!',
-                  '**`customPoint`** [2,500] -- Unlock a new Emoji to use for your Points! Follow with the emoji name [`!pp prizepouch custompoint <emoji>`] to purchase, or leave blank to see your options.'
+                  '**`customPoint`** [2,500] -- Unlock a new Emoji to use for your Points! Follow with the emoji name [`' + p + 'pp prizepouch custompoint <emoji>`] to purchase, or leave blank to see your options.'
                 ].join('\n'));
               } else if (commands[2] === 'adoption' && users[message.author.username].pearlPoints >= 10000) {
                 message.member.removeRole(337414561986772992);
@@ -534,14 +551,14 @@ client.on('message', message => {
               }
               break;
             default:
-              message.reply('Not a valid `!pearlpoint` command! Use `!pearlpoints help` to see help.');
+              message.reply('Not a valid `' + p + 'pearlpoint` command! Use `' + p + 'pearlpoints help` to see help.');
               break;
           }
         break;
-      case '!reference':
+      case 'reference':
         message.channel.send(jojoReferences[randInt(jojoReferences.length) - 1]);
         break;
-      case '!roll':
+      case 'roll':
         if (commands[1] === 'help') {
           message.reply([
             'Dice notation:',
@@ -566,34 +583,34 @@ client.on('message', message => {
           }
         }
         break;
-      case '!test':
+      case 'test':
         message.reply(emojis.garnetpoint);
         break;
-      case '!thanks':
-      case '!thank':
+      case 'thanks':
+      case 'thank':
         if (message.author.id === '267914049172275201') {
           message.reply('You have my gratitude, father.');
         } else {
           message.channel.send('I appreciate the compliment, ' + message.author + '!');
         }
         break;
-      case '!thenk':
-      case '!thunk':
+      case 'thenk':
+      case 'thunk':
         message.reply('I-- I don\'t know what that means. Sorry...');
         break;
-      case '!think':
+      case 'think':
         message.channel.send(thoughts[randInt(thoughts.length - 1)]);
         break;
-      case '!thonk':
+      case 'thonk':
         message.channel.send(emojis.thonking);
         break;
-      case '!troubleshoot':
+      case 'troubleshoot':
         message.reply('Try turning it off and back on again.');
         break;
-      case '!itdidntfuckingwork':
+      case 'itdidntfuckingwork':
         message.reply('ACH! _Sorry... I failed..._');
         break;
-      case '!whatsnewpussycat':
+      case 'whatsnewpussycat':
         message.channel.send('pls no');
         break;
     }
