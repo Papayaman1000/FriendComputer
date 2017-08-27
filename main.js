@@ -386,7 +386,7 @@ client.on('message', message => {
               );
               break;
             case 'claim':
-              if (utcDay() > (users[message.author.username].timeOfLastClaim + 1)) {
+              if (utcDay() >= (users[message.author.username].timeOfLastClaim + 1)) {
                 users[message.author.username].timeOfLastClaim = utcDay();
                 users[message.author.username].pearlPoints += 1000;
                 update('../users.json', users);
@@ -399,8 +399,8 @@ client.on('message', message => {
                   'You already claimed your Pearl Points today!\n'
                 + 'They can be claimed once per UTC day.\n'
                 + 'The current UTC time is `'
-                + now.getUTCHours()
-                + now.getUTCMinutes()
+                + now.getUTCHours() + ':'
+                + now.getUTCMinutes() + ':'
                 + now.getUTCSeconds()
                 + '`.'
                 );
