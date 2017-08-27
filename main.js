@@ -310,7 +310,7 @@ client.on('message', message => {
   if (!message.content.startsWith(p)) {return;}
   else {
     var commands = message.content.toLowerCase().split(' ');
-    commands[0] = commands[0].slice(p.length - 1);
+    commands[0] = commands[0].slice(p.length);
     switch(commands[0]) {
       case 'approve':
         message.channel.send(approve[randInt(approve.length) - 1]);
