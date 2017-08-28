@@ -55,6 +55,11 @@ function utcDay() {
   let d = now.getUTCDate();
   return (y + m + d);
 }
+
+function padTime(int) {
+  if (int > 9) return int;
+  else return '0' + int;
+}
 // Emoji
 const emojis = {
   'thonking': '<:thonking:337416747114299393>',
@@ -402,9 +407,9 @@ client.on('message', message => {
                   'You already claimed your Pearl Points today!\n'
                 + 'They can be claimed once per UTC day.\n'
                 + 'The current UTC time is `'
-                + now.getUTCHours() + ':'
-                + now.getUTCMinutes() + ':'
-                + now.getUTCSeconds()
+                + padTime(now.getUTCHours()) + ':'
+                + padTime(now.getUTCMinutes()) + ':'
+                + padTime(now.getUTCSeconds())
                 + '`.'
                 );
               }
