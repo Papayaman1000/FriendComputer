@@ -315,15 +315,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  if (!message.content.startsWith(p)) {
-    if (message.content.toLowerCase().startsWith('lit')) {
-      users[message.author.username].pearlPoints -= 25;
-      update('../users.json', users);
-      console.log('Egh. Someone said a no-no-word.');
-      message.reply('We don\'t say those words. You\'ve been fined 25' + emojis[users[message.author.username].pearlPointEmoji]);
-    }
-    return;
-  }
+  if (!message.content.startsWith(p)) {return;}
   else {
     console.log('Received prefixed message at ' + new Date().toUTCString());
     console.log('Message contents received:');
