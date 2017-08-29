@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 const Roll = require('roll'), roll = new Roll();
 const fs = require('fs');
+const os = require('os');
 const randomCat = require('random-cat');
 const client = new Discord.Client();
 const config = require('../config.json');
@@ -10,7 +11,7 @@ const config = require('../config.json');
 var users = require('../users.json');
 
 
-const VERSION = "1.0.0";
+const VERSION = "1.3.1";
 
 
 function update(filePath, fileVar) {
@@ -359,9 +360,11 @@ client.on('message', message => {
           '**`' + p + 'dont`** -- Tell me not to do something.',
           '**`' + p + 'diodad`** -- Fetch a SFW fanart of everyone\'s favorite time-stopping vampire being good dad.',
           '**`' + p + 'help`** -- It brings up this menu. S-Sorry if it\'s too confusing...',
+          '**`' + p + '`** -- Display system info.',
           '**`' + p + 'lapidot`** -- Fetch a SFW fanart of everyone\'s favorite gay rocks.',
           '**`' + p + 'lenny`** -- ( ͡° ͜ʖ ͡°)',
           ['**`' + p + 'pearlpoints <commands>`** -- The Pearl Point ' + emojis.pearpoint + ' incentive system. Type `' + p + 'pearlpoints help` for more info.'].join(''),
+          '**`' + p + 'ping`** -- Check if FC is online, and his response time.',
           '**`' + p + 'reference`** -- Outputs a random reference or joke.',
           '**`' + p + 'roll <notation>`** -- rolls dice as specified by standard notation. Type `' + p + 'roll help` for more info.',
           '**`' + p + 'thank`** -- Command me to thank you.',
@@ -374,6 +377,22 @@ client.on('message', message => {
           '**`' + p + 'whatsnewpussycat`** -- No. No. _No._',
           'PM my master Papayaman1000#6000 for any feature requests!'
         ].join('\n'));
+        break;
+      case 'info':
+        var now = new Date().getUTCMilliseconds();
+        var sent = message.createdAt.getUTCMilliseconds();
+        message.channel.send('Online! Message processed in `' + (now - sent) + 'ms`\n'
+        + 'Current Friend Computer version number: `' + VERSION + '`\n'
+        + 'Local OS: `' + os.release() + '`\n'
+        + 'Uptime: `' + Math.floor(os.uptime() / 86400) + 'd'
+                      + Math.floor(os.uptime() % 86400 / 3600) + 'h'
+                      + Math.floor(os.uptime() % 86400 % 3600 / 60) + 'm'
+                      + Math.floor(os.uptime() % 86400 % 3600 % 60) + 's`\n'
+        + 'CPU: `' + os.cpus().model + '`\n'
+        + 'Source: <https://github.com/Papayaman1000/FriendComputer>' + '\n'
+        + 'Bot Author: Papayaman1000#6000\n'
+        + 'Have a nice day! Remember: The Computer is your Friend.'
+        );
         break;
       case 'lapidot':
         message.channel.send(lapidot[randInt(lapidot.length) - 1]);
