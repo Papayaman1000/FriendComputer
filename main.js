@@ -10,6 +10,9 @@ const config = require('../config.json');
 var users = require('../users.json');
 
 
+const VERSION = "1.0.0";
+
+
 function update(filePath, fileVar) {
   console.log('Writing to: ' + filePath + ' at ' + time());
   fs.writeFile(filePath, JSON.stringify(fileVar, null, 2), function (err) {
@@ -312,7 +315,15 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  if (!message.content.startsWith(p)) {return;}
+  if (!message.content.startsWith(p)) {
+    if (message.content.toLowerCase().startsWith('lit')) {
+      users[message.author.username].pearlPoints -= 25;
+      update('../users.json', users);
+      console.log('Egh. Someone said a no-no-word.');
+      message.reply('We don\'t say those words. You\'ve been fined 25' + emojis[users[message.author.username].pearlPointEmoji]);
+    }
+    return;
+  }
   else {
     console.log('Received prefixed message at ' + new Date().toUTCString());
     console.log('Message contents received:');
