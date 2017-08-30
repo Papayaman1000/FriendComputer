@@ -240,10 +240,21 @@ const approve = [
 ];
 
 // Common functions
+/**
+ * Fetches a random integer.
+ * @param {number} max Maximum value.
+ * @return {number} An int between 1 and max, inclusive.
+ */
 function randInt(max) {
   return Math.floor(Math.random() * max + 1);
 }
 
+/**
+ * Parses a string to see if it contains certain words.
+ * @param {string} str String to be parsed
+ * @param {array} conditions Array containing strings to be matched.
+ * @return {boolean} If the string contains every item in conditionArr.
+ */
 function parse(str, conditionArr) {
   // Returns true if all items in conditionArr are present
   for (var i = 0; i < conditionArr.length; i++) {
@@ -254,6 +265,11 @@ function parse(str, conditionArr) {
   return true;
 }
 
+/**
+ * Creates a new user object in userObj.
+ * @param {Object} userObj Object containing the users.
+ * @return {null} none
+ */
 function newUser(userObj) {
   users[userObj.username] = {
     'id': userObj.id,
@@ -267,6 +283,11 @@ function newUser(userObj) {
   update('../users.json', users);
 }
 
+/**
+ * Shows what Pearl Point emoji the user has unlocked in chat.
+ * @param {object} message The message being processed.
+ * @return {null} none
+ */
 function showCustomPearlPoints(message) {
   var out = [];
   for (var i = 0; i < users[message.author.username].unlockedPearlPointEmoji.length; i++) {
@@ -278,6 +299,11 @@ function showCustomPearlPoints(message) {
   return out.join('\n');
 }
 
+/**
+ * Shows what Pearl Point emoji the user has not unlocked in chat.
+ * @param {object} message The message being processed.
+ * @return {null} none
+ */
 function showAvailablePearlPoints(message) {
   var out = [''];
   for (var i = 0; i < ppEmoji.length; i++) {
@@ -292,11 +318,19 @@ function showAvailablePearlPoints(message) {
   return out.join('\n');
 }
 
+/**
+ * Shows the current date and time as a UTC String.
+ * @return {string} The current date and time as .toUTCString();
+ */
 function time() {
   let d = new Date();
   return d.toUTCString();
 }
 
+/**
+ * Fetches the current date as an ISO string converted to an integer.
+ * @return {number} Current UTC date as YYYYmmdd
+ */
 function utcDay() {
   let now = new Date();
   let y = now.getUTCFullYear() * 10000;
@@ -305,6 +339,12 @@ function utcDay() {
   return (y + m + d);
 }
 
+/**
+ * If input is less than ten, stringifies it with a leading zero.
+ * @param {number} int The number to be padded, if need be.
+ * @return {string} "0x", where x is the int. If input >= 10, instead returns
+ * the int.
+ */
 function padTime(int) {
   if (int > 9) return int;
   else return '0' + int;
