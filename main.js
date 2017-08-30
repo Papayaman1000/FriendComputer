@@ -1,4 +1,5 @@
 // Load libraries and external files
+
 const Discord = require('discord.js');
 const Roll = require('roll'), roll = new Roll();
 const fs = require('fs');
@@ -22,48 +23,6 @@ function update(filePath, fileVar) {
   });
 }
 
-function showCustomPearlPoints(message) {
-  var out = [];
-  for (var i = 0; i < users[message.author.username].unlockedPearlPointEmoji.length; i++) {
-    out.push(
-      emojis[users[message.author.username].unlockedPearlPointEmoji[i]]
-    + users[message.author.username].unlockedPearlPointEmoji[i]
-    );
-  }
-  return out.join('\n');
-}
-
-function showAvailablePearlPoints(message) {
-  var out = [''];
-  for (var i = 0; i < ppEmoji.length; i++) {
-    if (users[message.author.username].unlockedPearlPointEmoji.indexOf(ppEmoji[i]) === -1) {
-      out.push(
-        emojis[ppEmoji[i]]
-      + ' '
-      + ppEmoji[i]
-      );
-    }
-  }
-  return out.join('\n');
-}
-
-function time() {
-  let d = new Date();
-  return d.toUTCString();
-}
-
-function utcDay() {
-  let now = new Date();
-  let y = now.getUTCFullYear() * 10000;
-  let m = (now.getUTCMonth() + 1) * 100;
-  let d = now.getUTCDate();
-  return (y + m + d);
-}
-
-function padTime(int) {
-  if (int > 9) return int;
-  else return '0' + int;
-}
 // Emoji
 const emojis = {
   'thonking': '<:thonking:337416747114299393>',
@@ -308,6 +267,50 @@ function newUser(userObj) {
   update('../users.json', users);
 }
 
+function showCustomPearlPoints(message) {
+  var out = [];
+  for (var i = 0; i < users[message.author.username].unlockedPearlPointEmoji.length; i++) {
+    out.push(
+      emojis[users[message.author.username].unlockedPearlPointEmoji[i]]
+    + users[message.author.username].unlockedPearlPointEmoji[i]
+    );
+  }
+  return out.join('\n');
+}
+
+function showAvailablePearlPoints(message) {
+  var out = [''];
+  for (var i = 0; i < ppEmoji.length; i++) {
+    if (users[message.author.username].unlockedPearlPointEmoji.indexOf(ppEmoji[i]) === -1) {
+      out.push(
+        emojis[ppEmoji[i]]
+      + ' '
+      + ppEmoji[i]
+      );
+    }
+  }
+  return out.join('\n');
+}
+
+function time() {
+  let d = new Date();
+  return d.toUTCString();
+}
+
+function utcDay() {
+  let now = new Date();
+  let y = now.getUTCFullYear() * 10000;
+  let m = (now.getUTCMonth() + 1) * 100;
+  let d = now.getUTCDate();
+  return (y + m + d);
+}
+
+function padTime(int) {
+  if (int > 9) return int;
+  else return '0' + int;
+}
+
+
 // Listeners
 client.on('ready', () => {
   console.log('Booting...');
@@ -324,13 +327,15 @@ client.on('message', message => {
     var commands = message.content.toLowerCase().split(' ');
     commands[0] = commands[0].slice(p.length);
     switch(commands[0]) {
-      case 'approve':
+      case 'approve': {
         message.channel.send(approve[randInt(approve.length) - 1]);
         break;
-      case 'cat':
+      }
+      case 'cat': {
         message.channel.send(randomCat.get());
         break;
-      case 'corners':
+      }
+      case 'corners': {
         //SECRET! Ababadabadobahdabadoobadoobadah badabadadoobah, IT'S A SECRET!
         message.channel.send(
           [
@@ -346,13 +351,16 @@ client.on('message', message => {
             '\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/\\\\/'
           ].join('\n'));
         break;
-      case 'dont':
+      }
+      case 'dont': {
         message.channel.send('Sorry, I can\'t take that back... but... sorry if it\'s inconvenient!');
         break;
-      case 'diodad':
+      }
+      case 'diodad': {
         message.channel.send(dioDad[randInt(dioDad.length) - 1]);
         break;
-      case 'help':
+      }
+      case 'help': {
         message.channel.send([
           'Here\'s a list of commands.',
           '**`' + p + 'approve`** -- Your friend did a good. Let them know.',
@@ -378,7 +386,8 @@ client.on('message', message => {
           'PM my master Papayaman1000#6000 for any feature requests!'
         ].join('\n'));
         break;
-      case 'info':
+      }
+      case 'info': {
         var now = new Date().getUTCMilliseconds();
         var sent = message.createdAt.getUTCMilliseconds();
         message.channel.send('Online! Message processed in `' + (now - sent) + 'ms`\n'
@@ -394,15 +403,18 @@ client.on('message', message => {
         + 'Have a nice day! Remember: The Computer is your Friend.'
         );
         break;
-      case 'lapidot':
+      }
+      case 'lapidot': {
         message.channel.send(lapidot[randInt(lapidot.length) - 1]);
         break;
-      case 'lenny':
+      }
+      case 'lenny': {
         message.channel.send('( ͡° ͜ʖ ͡°)');
         break;
+      }
       case 'pearlpoint':
       case 'pearlpoints':
-      case 'pp':
+      case 'pp': {
         if (!(message.author.username in users)) {
           newUser(message.author);
         }
@@ -584,16 +596,20 @@ client.on('message', message => {
               message.reply('Not a valid `' + p + 'pearlpoint` command! Use `' + p + 'pearlpoints help` to see help.');
               break;
           }
+        
         break;
-      case 'ping':
+      }
+      case 'ping': {
         var now = new Date().getUTCMilliseconds();
         var sent = message.createdAt.getUTCMilliseconds();
         message.channel.send('Online! Message processed in `' + (now - sent) + 'ms`');
         break;
-      case 'reference':
+      }
+      case 'reference': {
         message.channel.send(jojoReferences[randInt(jojoReferences.length) - 1]);
         break;
-      case 'roll':
+      }
+      case 'roll': {
         if (commands[1] === 'help') {
           message.reply([
             'Dice notation:',
@@ -618,36 +634,45 @@ client.on('message', message => {
           }
         }
         break;
+      }
       case 'thanks':
-      case 'thank':
+      case 'thank': {
         if (message.author.id === '267914049172275201') {
           message.reply('You have my gratitude, father.');
         } else {
           message.channel.send('I appreciate the compliment, ' + message.author + '!');
         }
         break;
+      }
       case 'thenk':
-      case 'thunk':
+      case 'thunk': {
         message.reply('I-- I don\'t know what that means. Sorry...');
         break;
-      case 'think':
+      }
+      case 'think': {
         message.channel.send(thoughts[randInt(thoughts.length - 1)]);
         break;
-      case 'thonk':
+      }
+      case 'thonk': {
         message.channel.send(emojis.thonking);
         break;
-      case 'troubleshoot':
+      }
+      case 'troubleshoot': {
         message.reply('Try turning it off and back on again.');
         break;
-      case 'itdidntfuckingwork':
+      }
+      case 'itdidntfuckingwork': {
         message.reply('ACH! _Sorry... I failed..._');
         break;
-      case 'whatsnewpussycat':
+      }
+      case 'whatsnewpussycat': {
         message.channel.send('pls no');
         break;
-      default:
+      }
+      default: {
         console.log('Message did not contain a valid command. Ignoring.');
         break;
+      }
     }
   }
 });
