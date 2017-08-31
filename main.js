@@ -400,6 +400,42 @@ client.on('message', message => {
         message.channel.send(dioDad[randInt(dioDad.length) - 1]);
         break;
       }
+      case 'glory': {
+        message.channel.send(
+          '```diff\n'
+        + '- Unbreakable Union of freeborn Republics,\n'
+        + '- Great Russia has welded forever to stand.\n'
+        + '- Created in struggle by will of the people,\n'
+        + '- United and mighty, our Soviet land!\n'
+        + '- \n'
+        + '- Sing to the Motherland, home of the free,\n'
+        + '- Bulwark of peoples in brotherhood strong.\n'
+        + '- O Party of Lenin, the strength of the people,\n'
+        + '- To Communism\'s triumph lead us on!\n'
+        + '- \n'
+        + '- Through tempests the sunrays of freedom have cheered us,\n'
+        + '- Along the new path where great Lenin did lead.\n'
+        + '- To a righteous cause he raised up the peoples,\n'
+        + '- Inspired them to labour and valourous deed.\n'
+        + '- \n'
+        + '- Sing to the Motherland, home of the free,\n'
+        + '- Bulwark of peoples in brotherhood strong.\n'
+        + '- O Party of Lenin, the strength of the people,\n'
+        + '- To Communism\'s triumph lead us on!\n'
+        + '- \n'
+        + '- In the victory of Communism\'s immortal ideal,\n'
+        + '- We see the future of our dear land.\n'
+        + '- And to her fluttering scarlet banner,\n'
+        + '- Selflessly true we always shall stand!\n'
+        + '- \n'
+        + '- Sing to the Motherland, home of the free,\n'
+        + '- Bulwark of peoples in brotherhood strong.\n'
+        + '- O Party of Lenin, the strength of the people,\n'
+        + '- To Communism\'s triumph lead us on!\n'
+        + '```'3
+        );
+        break;
+      }
       case 'help': {
         message.channel.send([
           'Here\'s a list of commands.',
@@ -408,7 +444,7 @@ client.on('message', message => {
           '**`' + p + 'dont`** -- Tell me not to do something.',
           '**`' + p + 'diodad`** -- Fetch a SFW fanart of everyone\'s favorite time-stopping vampire being good dad.',
           '**`' + p + 'help`** -- It brings up this menu. S-Sorry if it\'s too confusing...',
-          '**`' + p + '`** -- Display system info.',
+          '**`' + p + 'info`** -- Display system info.',
           '**`' + p + 'lapidot`** -- Fetch a SFW fanart of everyone\'s favorite gay rocks.',
           '**`' + p + 'lenny`** -- ( ͡° ͜ʖ ͡°)',
           ['**`' + p + 'pearlpoints <commands>`** -- The Pearl Point ' + emojis.pearpoint + ' incentive system. Type `' + p + 'pearlpoints help` for more info.'].join(''),
