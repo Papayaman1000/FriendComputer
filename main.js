@@ -432,7 +432,7 @@ client.on('message', message => {
         + '- Bulwark of peoples in brotherhood strong.\n'
         + '- O Party of Lenin, the strength of the people,\n'
         + '- To Communism\'s triumph lead us on!\n'
-        + '```'3
+        + '```'
         );
         break;
       }
