@@ -687,7 +687,8 @@ client.on('message', message => {
         break;
       }
       case 'rickroll':
-      case 'nevergonnagiveyouup': {
+      case 'nevergonnagiveyouup':
+      case 'rickastley': {
         // Never gonna give this up,
         // never gonna let this out.
         // Never gonna run around
