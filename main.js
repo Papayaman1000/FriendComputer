@@ -401,6 +401,7 @@ client.on('message', message => {
         break;
       }
       case 'glory': {
+        // Those unworthy shall not know our glory. This is a state secret.
         message.channel.send(
           '```diff\n'
         + '- Unbreakable Union of freeborn Republics,\n'
@@ -683,6 +684,15 @@ client.on('message', message => {
       }
       case 'reference': {
         message.channel.send(jojoReferences[randInt(jojoReferences.length) - 1]);
+        break;
+      }
+      case 'rickroll':
+      case 'nevergonnagiveyouup': {
+        // Never gonna give this up,
+        // never gonna let this out.
+        // Never gonna run around
+        // And tell you. (IT'S A SECRET!)
+        message.channel.send('https://imgflip.com/i/1v6frt');
         break;
       }
       case 'roll': {
