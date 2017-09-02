@@ -158,7 +158,12 @@ const thoughts = [
   'Gee, I wish more people understood that the computer is their friend. I really do only want to help!',
   'I heard somebody was making a drawing of me! I want to see it soon, but I hope I don\'t pressure them...',
   'I should give a friendly reminder to blink. A lot of people tend to forget to do that for whatever reason.',
-  'I wish people would stop attacking the commies. It\'s not nice to go after someone for their beliefs!'
+  'I wish people would stop attacking the commies. It\'s not nice to go after someone for their beliefs!',
+  'If I had a time-stopping Stand like The World, would it freeze my internals?'
+  + ' _What if I have that kind of Stand but don\'t know it because it freezes'
+  + ' me too?!_',
+  'What if you\'re all actually robots and I\'m actually a human?! QUICK,'
+  + ' WHAT\'S 73^44?!'
 ];
 
 const lapidot = [
@@ -359,7 +364,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  if (!message.content.startsWith(p)) {return;}
+  if (!message.content.startsWith(p)) return;
   else {
     console.log('Received prefixed message at ' + new Date().toUTCString());
     console.log('Message contents received:');
@@ -490,8 +495,8 @@ client.on('message', message => {
         break;
       }
       case 'pearlpoint':
-      case 'pearlpoints':
-      case 'pp': {
+        case 'pearlpoints':
+        case 'pp': {
         if (!(message.author.username in users)) {
           newUser(message.author);
         }
@@ -687,8 +692,8 @@ client.on('message', message => {
         break;
       }
       case 'rickroll':
-      case 'nevergonnagiveyouup':
-      case 'rickastley': {
+        case 'nevergonnagiveyouup':
+        case 'rickastley': {
         // Never gonna give this up,
         // never gonna let this out.
         // Never gonna run around
@@ -723,7 +728,7 @@ client.on('message', message => {
         break;
       }
       case 'thanks':
-      case 'thank': {
+        case 'thank': {
         if (message.author.id === '267914049172275201') {
           message.reply('You have my gratitude, father.');
         } else {
@@ -732,11 +737,12 @@ client.on('message', message => {
         break;
       }
       case 'thenk':
-      case 'thunk': {
+        case 'thunk': {
         message.reply('I-- I don\'t know what that means. Sorry...');
         break;
       }
-      case 'think': {
+      case 'think':
+        case 'reason': {
         message.channel.send(thoughts[randInt(thoughts.length - 1)]);
         break;
       }
