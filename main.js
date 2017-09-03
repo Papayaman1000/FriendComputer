@@ -754,6 +754,15 @@ client.on('message', message => {
         message.reply('Try turning it off and back on again.');
         break;
       }
+      case 'trumpcard':
+        case 'trapcard': {
+          // I'll have you know, I'm the least secretive president there is.
+          // I don't keep any secrets. Especially not from Russia. IT'S A SECRET
+          message.channel.send(
+            'http://innoculous.com/wp-content/uploads/2016/03/trump-card-720'
+          + '.png'
+          );
+        }
       case 'itdidntfuckingwork': {
         message.reply('ACH! _Sorry... I failed..._');
         break;
