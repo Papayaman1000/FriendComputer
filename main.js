@@ -693,7 +693,13 @@ client.on('message', message => {
       }
       case 'rickroll':
         case 'nevergonnagiveyouup':
-        case 'rickastley': {
+        case 'rickastley':
+        case 'secret':
+        case 'secretcommands':
+        case 'helpsecret':
+        case 'secrethelp':
+        case 'secret':
+        case 'secretcommand': {
         // Never gonna give this up,
         // never gonna let this out.
         // Never gonna run around
@@ -750,12 +756,19 @@ client.on('message', message => {
         message.channel.send(emojis.thonking);
         break;
       }
+      case 'trapcard': {
+        // IT'S A TRAP!!! AND A SECRET!!!
+        message.channel.send(
+          'https://vignette2.wikia.nocookie.net/yugioh/'
+        + 'images/9/92/MirrorForce-YS14-EN-C-1E.png/revision/'
+        + 'latest?cb=20140711043634'
+        );
+      }
       case 'troubleshoot': {
         message.reply('Try turning it off and back on again.');
         break;
       }
-      case 'trumpcard':
-        case 'trapcard': {
+      case 'trumpcard': {
           // I'll have you know, I'm the least secretive president there is.
           // I don't keep any secrets. Especially not from Russia. IT'S A SECRET
           message.channel.send(
