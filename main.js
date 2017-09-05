@@ -693,13 +693,7 @@ client.on('message', message => {
       }
       case 'rickroll':
         case 'nevergonnagiveyouup':
-        case 'rickastley':
-        case 'secret':
-        case 'secretcommands':
-        case 'helpsecret':
-        case 'secrethelp':
-        case 'secret':
-        case 'secretcommand': {
+        case 'rickastley': {
         // Never gonna give this up,
         // never gonna let this out.
         // Never gonna run around
@@ -707,6 +701,16 @@ client.on('message', message => {
         message.channel.send('https://imgflip.com/i/1v6frt');
         break;
       }
+      case 'secret':
+        case 'secretcommands':
+        case 'helpsecret':
+        case 'secrethelp':
+        case 'secret':
+        case 'secretcommand': {
+          // Still a secret!
+          message.channel.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+          break;
+        }
       case 'roll': {
         if (commands[1] === 'help') {
           message.reply([
