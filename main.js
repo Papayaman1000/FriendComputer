@@ -623,16 +623,14 @@ client.on('message', message => {
               if (!commands[2]) {
                 message.channel.send([
                   'Here\'s what we have [type `' + p + 'pearlpoints prizepouch <item>` to purchase]:',
-                  '**`adoption`** [10,000] -- Lose your Stray Meme role!',
-                  '**`unadoption`** [5,000] -- If you\'re an Adopted Meme, run away and become a Stray!',
                   '**`dm-ex-machina`** [50,000] -- If you attend D&D games, use this to earn a free Wish scroll!',
                   '**`prestige`** [10,000] -- Get a Prestige Pearl Point! These don\'t affect anything, and you can\'t see them, but they\'re tracked!',
                   '**`customPoint`** [2,500] -- Unlock a new Emoji to use for your Points! Follow with the emoji name [`' + p + 'pp prizepouch custompoint <emoji>`] to purchase, or leave blank to see your options.'
                 ].join('\n'));
-              } else if (commands[2] === 'adoption' && users[message.author.username].pearlPoints >= 10000) {
+              // } else if (commands[2] === 'adoption' && users[message.author.username].pearlPoints >= 10000) {
                 message.member.removeRole(337414561986772992);
                 message.reply('You\'re no longer a Stray Meme!');
-              } else if (commands[2] === 'unadoption' && users[message.author.username].pearlPoints >= 5000) {
+              // } else if (commands[2] === 'unadoption' && users[message.author.username].pearlPoints >= 5000) {
                 message.member.addRole(337414561986772992);
                 message.reply('You\'re now a Stray Meme!');
               } else if (commands[2] === 'dm-ex-machina' && users[message.author.username].pearlPoints >= 50000) {
@@ -760,7 +758,10 @@ client.on('message', message => {
         message.channel.send(emojis.thonking);
         break;
       }
-      case 'trapcard': {
+      case 'trapcard': 
+        case 'itsatrap':
+        case 'gay':
+        case 'notgay': {
         // IT'S A TRAP!!! AND A SECRET!!!
         message.channel.send(
           'https://vignette2.wikia.nocookie.net/yugioh/'
