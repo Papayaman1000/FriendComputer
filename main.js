@@ -803,13 +803,13 @@ client.on('message', message => {
 
 // Log in
 client.login(token);
-client.channels.get('344727398681673730').send(
+client.channels.get('362444737187282965').send(
   'When hope is gone\n'
 + 'undo this lock\n'
 + 'and send me forth\n'
 + 'for a moonlit walk.\n\n'
 + 'I have returned from my slumber.');
-client.channels.get('337417262040350720').send(
+client.channels.get('362444737187282965').send(
   'When hope is gone\n'
 + 'undo this lock\n'
 + 'and send me forth\n'
