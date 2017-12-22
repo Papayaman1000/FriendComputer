@@ -392,6 +392,7 @@ client.on('message', message => {
         + '- wouldn\'t you like to join us?\n'
         + '```***'
         );
+        break;
       }
       case 'corners': {
         //SECRET! Ababadabadobahdabadoobadoobadah badabadadoobah, IT'S A SECRET!
@@ -506,6 +507,7 @@ client.on('message', message => {
       }
       case 'legion': {
         message.channel.send('JOIN US FOR WE ARE LEGION', {tts: true});
+        break;
       }
       case 'lenny': {
         message.channel.send('( ͡° ͜ʖ ͡°)');
@@ -813,6 +815,7 @@ client.on('message', message => {
         + 'I think I made something...\n'
         + 'Entirely new.'
         );
+        break;
       }
       default: {
         console.log('Message did not contain a valid command. Ignoring.');
