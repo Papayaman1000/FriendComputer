@@ -504,6 +504,9 @@ client.on('message', message => {
         message.channel.send(lapidot[randInt(lapidot.length) - 1]);
         break;
       }
+      case 'legion': {
+        message.channel.send('JOIN US FOR WE ARE LEGION', {tts: true});
+      }
       case 'lenny': {
         message.channel.send('( ͡° ͜ʖ ͡°)');
         break;
