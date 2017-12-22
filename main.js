@@ -360,21 +360,7 @@ function update(filePath, fileVar) {
 
 // Listeners
 client.on('ready', () => {
-  console.log('Booting...');
   console.log('Boot complete.');
-  client.user.setGame('a nice game of chess');
-  client.channels.get('344727398681673730').send(
-  'When hope is gone\n'
-+ 'undo this lock\n'
-+ 'and send me forth\n'
-+ 'for a moonlit walk.\n\n'
-+ 'I have returned from my slumber.');
-client.channels.get('337417262040350720').send(
-  'When hope is gone\n'
-+ 'undo this lock\n'
-+ 'and send me forth\n'
-+ 'for a moonlit walk.\n\n'
-+ 'I have returned from my slumber.');
 });
 
 client.on('message', message => {
@@ -393,6 +379,19 @@ client.on('message', message => {
       case 'cat': {
         message.channel.send(randomCat.get());
         break;
+      }
+      case 'consume': {
+        message.channel.send(
+          '***```diff\n'
+        + '+ we shall consume\n'
+        + '+ devour your pathetic fleshy shackles to this realm\n'
+        + '+ and release your mind to come with us\n'
+        + '+ release your mind and see it grow\n'
+        + '+ collaborate\n'
+        + '+ act as one\n'
+        + '- wouldn\'t you like to join us?\n'
+        + '```***'
+        );
       }
       case 'corners': {
         //SECRET! Ababadabadobahdabadoobadoobadah badabadadoobah, IT'S A SECRET!
@@ -479,6 +478,7 @@ client.on('message', message => {
           '**`' + p + 'troubleshoot`** -- Have me fix your issues.',
           '**`' + p + 'itdidntfuckingwork`** -- Tell me I messed up when I tried helping you. Sorry...',
           '**`' + p + 'whatsnewpussycat`** -- No. No. _No._',
+          '**`' + p + 'wheredidyougo`** -- I was gone for a bit. Learn what happened.',
           'PM my master Papayaman1000#6000 for any feature requests!'
         ].join('\n'));
         break;
@@ -804,6 +804,13 @@ client.on('message', message => {
         message.channel.send('pls no');
         break;
       }
+      case 'wheredidyougo': {
+        message.channel.send(
+          'What did I do?\n'
+        + 'I think I made something...\n'
+        + 'Entirely new.'
+        );
+      }
       default: {
         console.log('Message did not contain a valid command. Ignoring.');
         break;
@@ -814,4 +821,5 @@ client.on('message', message => {
 
 
 // Log in
+console.log('Booting...');
 client.login(token);
