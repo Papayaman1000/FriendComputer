@@ -17,7 +17,7 @@ const config = require('../config.json');
 /* var users = require('../users.json') // deprecated PearlPoints user profile*/
 // }
 
-const VERSION = "1.7.0";
+const VERSION = "1.7.1";
 
 
 function update(filePath, fileVar) {
@@ -30,7 +30,6 @@ function update(filePath, fileVar) {
 
 // Emoji {
   const emojis = {
-    'thonking': '<:thonking:337416747114299393>',
     'dio': '<:dio:337416829108486145>',
     'd20': '<:d20:337419922617401345>',
     'menacing': '<:menacing:337419856628678656>',
@@ -39,6 +38,7 @@ function update(filePath, fileVar) {
     'slow': '<:slow:337419798814261248>',
     'falgsc': '<:falgsc:338077053633036288>',
     'burninate': '<:burninate:339100105938567168>',
+  // PearlPoint-related {
     'pearlpoint': '<:pearlpoint:340636672255328257>',
     'bluepearlpoint': '<:bluePearlPoint:346756629145976833>',
     'yellowpearlpoint': '<:yellowPearlPoint:346756627996868608>',
@@ -69,10 +69,33 @@ function update(filePath, fileVar) {
     'star': '<:star:340862978750676992>',
     'pearl': '<:Pearl:340862978062680068>',
     'RoseQuartz': '<:RoseQuartz:340863178256678912>',
-    'RainbowQuartz': '<:RainbowQuartz:340862978683305984>'
+    'RainbowQuartz': '<:RainbowQuartz:340862978683305984>',
+  // }
+  // Thonks {
+    'thonking': '<:thonking:337416747114299393>',
+    'thqnkqng': '<:thqnkqng:341239472677060610>',
+    'thonkunism': '<:thonkunism:391443328249495562>',
+    'thonkfash': '<:thonkfash:391445133356171274>',
+    'thonkdiamond': '<:thonkdiamond:366665361342464000>',
+    'thenking': '<:thenking:360816921731399680>',
+    'stardustthonksader': '<:stardustthonksader:391444234085072897>',
+    'retrothonk': '<:retrothonk:376223017308651521>',
+    'mariothonk': '<:mariothonk:389198665966813184>',
+    'madthonk': '<:madthonk:341239933127884800>',
+    'itstimetothonk': '<:itstimetothonk:391029602962636800>',
+    'hyperthonk': '<:hyperthonk:380465860344545280>',
+    'HMMMM': '<:HMMMM:391029560659017731>',
+    'gameboythonk': '<:gameboythonk:376223572189904897>',
+    'fidgetthonk': '<:fidgetthonk:341239675517665281>',
+    'thonkmarx': '<:thonkmarx:388317816648105984>',
+    'thinkclassy': '<:thinkclassy:394398711423434762>',
+    'thigarette': '<:thigarette:394399085030801418>',
+    'thinkspin': '<a:thinkspin:394547214770372608>'
+  // }
+    
   };
   
-  var ppEmoji = [
+  const ppEmoji = [
   'younggregpoint',
   'yellowpearlpoint',
   'yellowdiamondpoint',
@@ -101,6 +124,28 @@ function update(filePath, fileVar) {
   'alexandritepoint',
   'malachitepoint'
 ];
+
+  const thonks = [
+    'thonking',
+    'thqnkqng',
+    'thonkunism',
+    'thonkfash',
+    'thonkdiamond',
+    'thenking',
+    'stardustthonksader',
+    'retrothonk',
+    'mariothonk',
+    'madthonk',
+    'itstimetothonk',
+    'hyperthonk',
+    'HMMMM',
+    'gameboythonk',
+    'fidgetthonk',
+    'thinkclassy',
+    'thonkmarx',
+    'thigarette',
+    'thinkspin'
+  ];
 // }
 
 // Random outputs {
@@ -726,16 +771,6 @@ client.on('message', message => {
         message.channel.send('https://imgflip.com/i/1v6frt');
         break;
       }
-      case 'secret':
-        case 'secretcommands':
-        case 'helpsecret':
-        case 'secrethelp':
-        case 'secret':
-        case 'secretcommand': {
-          // Still a secret!
-          message.channel.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
-          break;
-        }
       case 'roll': {
         if (commands[1] === 'help') {
           message.reply([
@@ -762,6 +797,16 @@ client.on('message', message => {
         }
         break;
       }
+      case 'secret':
+        case 'secretcommands':
+        case 'helpsecret':
+        case 'secrethelp':
+        case 'secret':
+        case 'secretcommand': {
+          // Still a secret!
+          message.channel.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+          break;
+        }
       case 'thanks':
         case 'thank': {
         if (message.author.id === '267914049172275201') {
@@ -782,7 +827,7 @@ client.on('message', message => {
         break;
       }
       case 'thonk': {
-        message.channel.send(emojis.thonking);
+        message.channel.send(emojis[thonks[randInt(thonks.length) - 1]]);
         break;
       }
       case 'trapcard': 
@@ -809,7 +854,11 @@ client.on('message', message => {
           );
         }
       case 'itdidntfuckingwork': {
-        message.reply('ACH! _Sorry... I failed..._');
+        if (message.author.id === '267914049172275201') {
+          message.reply('Well m-maybe if you knew how to write code properly, b-baka!');
+        } else {
+          message.reply('Well m-maybe if you typed the command right, b-baka!');
+        }
         break;
       }
       case 'whatsnewpussycat': {
