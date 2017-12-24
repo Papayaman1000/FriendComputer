@@ -1,18 +1,23 @@
-// Load libraries and external files
+// Load dependencies {
+console.log('Booting...');
 
 const Discord = require('discord.js');
-const Roll = require('roll'), roll = new Roll();
-const fs = require('fs');
-const os = require('os');
-const randomCat = require('random-cat');
+
+const fs = require('fs'); // File management -- Node default
+const os = require('os'); // OS info -- Node default
+const randomCat = require('random-cat'); // Random cat pictures
+const randomWord = require('random-word-by-length'); // Random words with x char
+const Roll = require('roll'), roll = new Roll(); // Dice notation processing
+const music = require('discord.js-music-v11'); // One-and-done music lib
+
 const client = new Discord.Client();
 const config = require('../config.json');
   const token = config.token;
   const p = config.prefix;
-/* var users = require('../users.json') */
+/* var users = require('../users.json') // deprecated PearlPoints user profile*/
+// }
 
-
-const VERSION = "1.3.1";
+const VERSION = "1.7.0";
 
 
 function update(filePath, fileVar) {
@@ -457,7 +462,7 @@ client.on('message', message => {
         break;
       }
       case 'help': {
-        message.channel.send([
+        message.author.send([
           'Here\'s a list of commands.',
           '**`' + p + 'approve`** -- Your friend did a good. Let them know.',
           '**`' + p + 'cat`** -- Get a random cat picture.',
@@ -467,6 +472,7 @@ client.on('message', message => {
           '**`' + p + 'info`** -- Display system info.',
           '**`' + p + 'lapidot`** -- Fetch a SFW fanart of everyone\'s favorite gay rocks.',
           '**`' + p + 'lenny`** -- ( ͡° ͜ʖ ͡°)',
+          '**`' + p + 'music <commands>`** -- I\'m also a music bot because of course I am. Join a voice channel first.',
 /*          ['**`' + p + 'pearlpoints <commands>`** -- The Pearl Point ' + emojis.pearpoint + ' incentive system. Type `' + p + 'pearlpoints help` for more info.'].join(''), */
           '**`' + p + 'ping`** -- Check if FC is online, and his response time.',
           '**`' + p + 'reference`** -- Outputs a random reference or joke.',
@@ -480,8 +486,9 @@ client.on('message', message => {
           '**`' + p + 'itdidntfuckingwork`** -- Tell me I messed up when I tried helping you. Sorry...',
           '**`' + p + 'whatsnewpussycat`** -- No. No. _No._',
           '**`' + p + 'wheredidyougo`** -- I was gone for a bit. Learn what happened.',
-          'PM my master Papayaman1000#6000 for any feature requests!'
+          'PM my master <@267914049172275201> for any feature requests!'
         ].join('\n'));
+        message.channel.send('> You should\'ve gotten a DM with that just now.');
         break;
       }
       case 'info': {
@@ -818,14 +825,22 @@ client.on('message', message => {
         break;
       }
       default: {
-        console.log('Message did not contain a valid command. Ignoring.');
+        if (!message.content.startsWith(p + 'music '))
+          console.log('Message did not contain a valid command. Ignoring.');
         break;
       }
     }
   }
 });
 
+music(client, {
+  prefix: p + 'music ',
+  global: false,
+  maxQueueSize: 255,
+  clearInvoker: false, // don't delet trigger message
+});
+
 
 // Log in
-console.log('Booting...');
+console.log('Logging in...');
 client.login(token);

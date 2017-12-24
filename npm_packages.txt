@@ -1,0 +1,11 @@
+To host the bot properly, your machine needs the following packages.
+I think that's all of them. No promises.
+
+npm install :
+  discord.js
+  discord.js-music-v11
+  ffmpeg-binaries
+  opusscript
+  random-cat
+  random-word-by-length
+  roll
