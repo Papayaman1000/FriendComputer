@@ -5,10 +5,11 @@ const Discord = require('discord.js');
 
 const fs = require('fs'); // File management -- Node default
 const os = require('os'); // OS info -- Node default
+const random = require('randgen');
 const randomCat = require('random-cat'); // Random cat pictures
 const randomWord = require('random-word-by-length'); // Random words with x char
 const Roll = require('roll'), roll = new Roll(); // Dice notation processing
-const music = require('discord.js-music-v11'); // One-and-done music lib
+// const music = require('discord.js-music-v11'); // One-and-done music lib
 
 const client = new Discord.Client();
 const config = require('../config.json');
@@ -90,7 +91,8 @@ function update(filePath, fileVar) {
     'thonkmarx': '<:thonkmarx:388317816648105984>',
     'thinkclassy': '<:thinkclassy:394398711423434762>',
     'thigarette': '<:thigarette:394399085030801418>',
-    'thinkspin': '<a:thinkspin:394547214770372608>'
+    'thinkspin': '<a:thinkspin:394547214770372608>',
+    'thonkollapse': '<a:thonkollapse:397206575724363778>'
   // }
     
   };
@@ -144,7 +146,8 @@ function update(filePath, fileVar) {
     'thinkclassy',
     'thonkmarx',
     'thigarette',
-    'thinkspin'
+    'thinkspin',
+    'thonkollapse'
   ];
 // }
 
@@ -517,15 +520,15 @@ client.on('message', message => {
           '**`' + p + 'info`** -- Display system info.',
           '**`' + p + 'lapidot`** -- Fetch a SFW fanart of everyone\'s favorite gay rocks.',
           '**`' + p + 'lenny`** -- ( ͡° ͜ʖ ͡°)',
-          '**`' + p + 'music <commands>`** -- I\'m also a music bot because of course I am. Join a voice channel first.',
-/*          ['**`' + p + 'pearlpoints <commands>`** -- The Pearl Point ' + emojis.pearpoint + ' incentive system. Type `' + p + 'pearlpoints help` for more info.'].join(''), */
+        //'**`' + p + 'music <commands>`** -- I\'m also a music bot because of course I am. Join a voice channel first.',
+        //['**`' + p + 'pearlpoints <commands>`** -- The Pearl Point ' + emojis.pearpoint + ' incentive system. Type `' + p + 'pearlpoints help` for more info.'].join(''),
           '**`' + p + 'ping`** -- Check if FC is online, and his response time.',
           '**`' + p + 'reference`** -- Outputs a random reference or joke.',
           '**`' + p + 'roll <notation>`** -- rolls dice as specified by standard notation. Type `' + p + 'roll help` for more info.',
           '**`' + p + 'thank`** -- Command me to thank you.',
           '**`' + p + 'thenk`** -- Um? I don\'t know what this does. [I-Is that even a word?]',
           '**`' + p + 'think`** -- Have me output my thoughts.',
-          ['**`' + p + 'thonk`** -- ', emojis.thonking].join(''),
+          '**`' + p + 'thonk`** -- ' + emojis.thonking,
           '**`' + p + 'thunk`** -- Seriously, is this even a word? I don\'t get it.',
           '**`' + p + 'troubleshoot`** -- Have me fix your issues.',
           '**`' + p + 'itdidntfuckingwork`** -- Tell me I messed up when I tried helping you. Sorry...',
@@ -882,13 +885,14 @@ client.on('message', message => {
   }
 });
 
+/* WHOOPS! You kinda need a soundcard to play music.
 music(client, {
   prefix: p + 'music ',
   global: false,
   maxQueueSize: 255,
   clearInvoker: false, // don't delet trigger message
 });
-
+*/
 
 // Log in
 console.log('Logging in...');
