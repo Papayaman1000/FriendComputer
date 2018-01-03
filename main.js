@@ -9,7 +9,7 @@ const random = require('randgen');
 const randomCat = require('random-cat'); // Random cat pictures
 const randomWord = require('random-word-by-length'); // Random words with x char
 const Roll = require('roll'), roll = new Roll(); // Dice notation processing
-// const music = require('discord.js-music-v11'); // One-and-done music lib
+const music = require('discord.js-music-v11'); // One-and-done music lib
 
 const client = new Discord.Client();
 const config = require('../config.json');
@@ -91,8 +91,7 @@ function update(filePath, fileVar) {
     'thonkmarx': '<:thonkmarx:388317816648105984>',
     'thinkclassy': '<:thinkclassy:394398711423434762>',
     'thigarette': '<:thigarette:394399085030801418>',
-    'thinkspin': '<a:thinkspin:394547214770372608>',
-    'thonkollapse': '<a:thonkollapse:397206575724363778>'
+    'thinkspin': '<a:thinkspin:394547214770372608>'
   // }
     
   };
@@ -146,8 +145,7 @@ function update(filePath, fileVar) {
     'thinkclassy',
     'thonkmarx',
     'thigarette',
-    'thinkspin',
-    'thonkollapse'
+    'thinkspin'
   ];
 // }
 
@@ -201,7 +199,7 @@ function update(filePath, fileVar) {
     ['TROGDOR\'D, BITCH!', emojis.burninate].join(' '),
     'Who the hell do you think I am?!',
     '_RO RO FIGHT THE POWER!_',
-    'somebODY ONCE TOLD ME THE WOOORLD WAS GONNA OWN ME',
+    'somebODY ONCE TOLD ME THE WOOORLD WAS GONNA ROLL ME',
     'Gay rocks are best rocks'
   ];
   
